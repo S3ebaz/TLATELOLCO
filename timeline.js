@@ -1,32 +1,43 @@
-window.F = window.F || {
-  cinco: "https://mtpnoticias.com/wp-content/uploads/2018/10/Mujeres_68-e1538423051626-960x500-1.jpg",
-  fila: "https://desinformemonos.org/wp-content/uploads/2025/10/Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Diseno-sin-titulo-2.png",
-  marcha: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68--2.jpg",
-  cartel: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68--1.jpg",
-  coro: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68-focus-0-0-1260-1050.jpg",
-  noche: "https://blob.lacaderadeeva.com/images/2023/10/02/mujeres-en-el-68-que-hacian.jpg",
-  madres: "https://blob.lacaderadeeva.com/images/2023/10/02/mujeres-en-el-68.jpg"
+function wiki(name){
+  return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(name)+"?width=640";
+}
+window.F = {
+  cinco: wiki("Movimiento estudiantil 68 09.jpg"),
+  fila: wiki("Manifestació de dol.jpg"),
+  marcha: wiki("Manifestació 27 d'agost.jpg"),
+  cartel: wiki("Mítin filosofia.jpg"),
+  coro: wiki("Mítin filosofia (2).jpg"),
+  noche: wiki("Movimiento estudiantil 68 50.jpg"),
+  madres: wiki("Mítin CU-20 agost.jpg")
 };
 const CAP = {
   cinco: "Estudiantes del 68",
-  fila: "Compañeras del movimiento",
+  fila: "Marcha de duelo",
   marcha: "Ellas en la marcha",
-  cartel: "Brigadistas con cartel",
-  coro: "Estudiantes en asamblea",
-  noche: "Marcha nocturna",
-  madres: "Mujeres en la calle"
+  cartel: "Asamblea",
+  coro: "Asamblea universitaria",
+  noche: "El movimiento",
+  madres: "Mítin en CU"
 };
 const GALLERY = [
-  ["cinco","Cinco estudiantes"],
+  ["cinco","Estudiantes"],
   ["marcha","En la calle"],
-  ["cartel","El cartel"],
-  ["coro","La asamblea"],
-  ["fila","La fila"],
-  ["noche","De noche"],
-  ["madres","En manifestación"]
+  ["cartel","Asamblea"],
+  ["coro","El mitin"],
+  ["fila","La marcha"],
+  ["noche","El 68"],
+  ["madres","En CU"]
 ];
 function pic(){
   return [...arguments].map(k => ({src: F[k], cap: CAP[k]||k})).filter(x => x.src);
+}
+function addImg(box, src, cap){
+  const fig=document.createElement("figure");
+  const img=document.createElement("img");
+  img.src=src; img.alt=cap; img.loading="lazy"; img.referrerPolicy="no-referrer";
+  img.onerror=function(){ fig.style.display="none"; };
+  const fc=document.createElement("figcaption"); fc.textContent=cap;
+  fig.appendChild(img); fig.appendChild(fc); box.appendChild(fig);
 }
 const EVENTS=[
 {id:"ctx",cat:"inicio",when:"1968",title:"Ellas también estaban ahí",kicker:"Contexto · una de cada seis",body:`<p>En 1967–68 había unos 150 mil estudiantes en la UNAM y el IPN. Solo alrededor de <strong>25 mil eran mujeres</strong>. Aun así organizaron brigadas, pintaron mantas y representaron a sus escuelas.</p>`,facts:["~16% de la matrícula","15–30 mujeres en el CNH"],imgs:pic("cinco","coro"),note:"Los nombres famosos son la punta. Debajo hay cientos de brigadistas anónimas."},
@@ -37,10 +48,10 @@ const EVENTS=[
 {id:"brig",cat:"auge",when:"ago",title:"La brigada: el trabajo que no sale en la foto",kicker:"Auge · el trabajo diario",body:`<p>Las brigadas salían a explicar el pliego. <strong>La Nacha</strong> estaba en finanzas. <strong>Elsa Lecuona</strong> salía a la calle.</p><div class="petition">“Nosotras también nos la jugamos.” — Elsa Lecuona</div>`,facts:["Volantes","Peseros"],imgs:pic("cartel","marcha"),note:"Sin brigadas no hay movimiento de masas."},
 {id:"a13",cat:"auge",when:"13 ago",title:"La primera gran marcha al Zócalo",kicker:"Auge · 13 de agosto",body:`<p>Cientos de miles caminan al Zócalo. Hay contingentes mixtos y brigadas de mujeres.</p>`,facts:["Zócalo","Contingentes mixtos"],imgs:pic("marcha","noche"),note:"La plaza pública era un escenario prestado."},
 {id:"a27",cat:"auge",when:"27 ago",title:"Mujeres en el Zócalo ocupado",kicker:"Auge · 27 de agosto",body:`<p>Otra marcha enorme. Al día siguiente el ejército desaloja la plaza.</p>`,facts:["27–28 de agosto"],imgs:pic("noche","coro"),note:"Después de esta noche, el tono del gobierno se endurece."},
-{id:"s13",cat:"represion",when:"13 sep",title:"La Marcha del Silencio",kicker:"Septiembre · 13",body:`<p>Más de 100 mil personas caminan en silencio. Silvia Gálvez, de 15 años, ya era brigadista.</p>`,facts:["Pañuelo blanco","Más de 100 mil"],imgs:pic("madres","cinco"),note:"El silencio no era rendición."},
-{id:"s18",cat:"represion",when:"18 sep",title:"El ejército en CU: más de 40 mujeres detenidas",kicker:"Septiembre · 18",body:`<p>El ejército ocupa Ciudad Universitaria. La Nacha es detenida con más de 40 compañeras y sale a las 72 horas.</p>`,facts:["Ocupación de CU","Más de 40 detenidas"],imgs:pic("fila","cinco"),note:"La Nacha sale y no se retira."},
+{id:"s13",cat:"represion",when:"13 sep",title:"La Marcha del Silencio",kicker:"Septiembre · 13",body:`<p>Más de 100 mil personas caminan en silencio. Silvia Gálvez, de 15 años, ya era brigadista.</p>`,facts:["Pañuelo blanco","Más de 100 mil"],imgs:pic("fila","cinco"),note:"El silencio no era rendición."},
+{id:"s18",cat:"represion",when:"18 sep",title:"El ejército en CU: más de 40 mujeres detenidas",kicker:"Septiembre · 18",body:`<p>El ejército ocupa Ciudad Universitaria. La Nacha es detenida con más de 40 compañeras y sale a las 72 horas.</p>`,facts:["Ocupación de CU","Más de 40 detenidas"],imgs:pic("madres","cinco"),note:"La Nacha sale y no se retira."},
 {id:"s23",cat:"represion",when:"23–24 sep",title:"El Casco y las escuelas del Poli",kicker:"Septiembre · el IPN",body:`<p>El ejército entra al Casco de Santo Tomás. Myrthokleia González representa a su escuela del IPN.</p>`,facts:["Casco de Santo Tomás"],imgs:pic("marcha","cartel"),note:"Cuando cierran las escuelas, el mitin al aire libre se vuelve el aula grande."},
-{id:"s30",cat:"represion",when:"30 sep",title:"Cinco mil mujeres marchan",kicker:"Septiembre · las madres",body:`<p>La Unión Nacional de Mujeres Mexicanas convoca. Se suman unas <strong>cinco mil mujeres</strong>.</p>`,facts:["UNMM","Monumento a la Madre"],imgs:pic("madres","coro"),note:"El 68 también fue de madres que no aceptaron el silencio."},
+{id:"s30",cat:"represion",when:"30 sep",title:"Cinco mil mujeres marchan",kicker:"Septiembre · las madres",body:`<p>La Unión Nacional de Mujeres Mexicanas convoca. Se suman unas <strong>cinco mil mujeres</strong>.</p>`,facts:["UNMM","Monumento a la Madre"],imgs:pic("fila","coro"),note:"El 68 también fue de madres que no aceptaron el silencio."},
 {id:"o07",cat:"octubre",when:"07:00",title:"Se arma el dispositivo",kicker:"2 de octubre · 07:00",body:`<p>Hay tropas y hombres de civil. Adriana Corona cuenta que, aun avisadas, salieron.</p>`,facts:["Edificio Chihuahua"],imgs:pic("cinco","fila"),note:"El mitin todavía no empieza. El dispositivo ya está pensado."},
 {id:"o09",cat:"octubre",when:"09:00",title:"Ellas no están en la mesa de las 9",kicker:"2 de octubre · 09:00",body:`<p>Hay una reunión del CNH con enviados del gobierno. Las delegadas no figuran en esa foto de la mañana.</p>`,facts:["Reunión CNH–gobierno"],imgs:pic("cartel","cinco"),note:"Negociar de día no detiene el operativo."},
 {id:"o16",cat:"octubre",when:"16:00",title:"Llegan vecinas, alumnas, periodistas",kicker:"2 de octubre · 16:00",body:`<p>Se juntan de 5 mil a 15 mil personas. Oriana Fallaci está en la plaza. Elena Poniatowska reconstruirá esa tarde.</p>`,facts:["Fallaci y Poniatowska"],imgs:pic("coro","marcha"),note:"La plaza es el patio de la unidad."},
@@ -54,12 +65,7 @@ const EVENTS=[
 ];
 (function gallery(){
   const box=document.getElementById("gallery"); if(!box) return;
-  GALLERY.forEach(([k,label])=>{
-    const src=F[k]; if(!src) return;
-    const fig=document.createElement("figure");
-    fig.innerHTML=`<img src="${src}" alt="${label}" referrerpolicy="no-referrer"><figcaption>${label}</figcaption>`;
-    box.appendChild(fig);
-  });
+  GALLERY.forEach(([k,label])=> addImg(box, F[k], label));
 })();
 const track=document.getElementById("track");
 EVENTS.forEach((e,i)=>{
@@ -80,11 +86,7 @@ function show(i){
   const ul=document.getElementById("facts"); ul.innerHTML="";
   e.facts.forEach(f=>{const li=document.createElement("li");li.textContent=f;ul.appendChild(li);});
   const box=document.getElementById("imgs"); box.innerHTML="";
-  (e.imgs||[]).forEach(im=>{
-    const fig=document.createElement("figure");
-    fig.innerHTML=`<img src="${im.src}" alt="${im.cap}" referrerpolicy="no-referrer"><figcaption>${im.cap}</figcaption>`;
-    box.appendChild(fig);
-  });
+  (e.imgs||[]).forEach(im=> addImg(box, im.src, im.cap));
   document.querySelectorAll(".mark").forEach((m,idx)=>m.classList.toggle("active",idx===i));
 }
 document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{
