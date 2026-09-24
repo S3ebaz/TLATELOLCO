@@ -1,5 +1,5 @@
-const CACHE = "estudiantes-68-v3";
-const FILES = ["./", "./index.html", "./timeline.js"];
+const CACHE = "estudiantes-68-movil-v1";
+const FILES = ["./", "./index.html", "./timeline.js", "./fotos.js", "./sw.js"];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(FILES)).then(() => self.skipWaiting()));
 });
@@ -8,5 +8,16 @@ self.addEventListener("activate", (event) => {
 });
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).catch(() => caches.match("./index.html"))));
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+      return fetch(event.request).then((res) => {
+        const copy = res.clone();
+        if (res.ok && new URL(event.request.url).origin === self.location.origin) {
+          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+        }
+        return res;
+      }).catch(() => caches.match("./index.html"));
+    })
+  );
 });
