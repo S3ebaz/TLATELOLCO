@@ -1,3 +1,12 @@
+window.F = window.F || {
+  cinco: "https://mtpnoticias.com/wp-content/uploads/2018/10/Mujeres_68-e1538423051626-960x500-1.jpg",
+  fila: "https://desinformemonos.org/wp-content/uploads/2025/10/Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Copia-de-Diseno-sin-titulo-2.png",
+  marcha: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68--2.jpg",
+  cartel: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68--1.jpg",
+  coro: "https://blob.lacaderadeeva.com/images/2023/10/02/que-papel-desempenaron-las-mujeres-en-el-movimiento-estudiantil-del-68-focus-0-0-1260-1050.jpg",
+  noche: "https://blob.lacaderadeeva.com/images/2023/10/02/mujeres-en-el-68-que-hacian.jpg",
+  madres: "https://blob.lacaderadeeva.com/images/2023/10/02/mujeres-en-el-68.jpg"
+};
 const CAP = {
   cinco: "Estudiantes del 68",
   fila: "Compañeras del movimiento",
@@ -17,7 +26,7 @@ const GALLERY = [
   ["madres","En manifestación"]
 ];
 function pic(){
-  return [...arguments].map(k => ({src: (window.F&&F[k]) || "", cap: CAP[k]||k})).filter(x => x.src);
+  return [...arguments].map(k => ({src: F[k], cap: CAP[k]||k})).filter(x => x.src);
 }
 const EVENTS=[
 {id:"ctx",cat:"inicio",when:"1968",title:"Ellas también estaban ahí",kicker:"Contexto · una de cada seis",body:`<p>En 1967–68 había unos 150 mil estudiantes en la UNAM y el IPN. Solo alrededor de <strong>25 mil eran mujeres</strong>. Aun así organizaron brigadas, pintaron mantas y representaron a sus escuelas.</p>`,facts:["~16% de la matrícula","15–30 mujeres en el CNH"],imgs:pic("cinco","coro"),note:"Los nombres famosos son la punta. Debajo hay cientos de brigadistas anónimas."},
@@ -46,9 +55,9 @@ const EVENTS=[
 (function gallery(){
   const box=document.getElementById("gallery"); if(!box) return;
   GALLERY.forEach(([k,label])=>{
-    const src=window.F&&F[k]; if(!src) return;
+    const src=F[k]; if(!src) return;
     const fig=document.createElement("figure");
-    fig.innerHTML=`<img src="${src}" alt="${label}"><figcaption>${label}</figcaption>`;
+    fig.innerHTML=`<img src="${src}" alt="${label}" referrerpolicy="no-referrer"><figcaption>${label}</figcaption>`;
     box.appendChild(fig);
   });
 })();
@@ -73,7 +82,7 @@ function show(i){
   const box=document.getElementById("imgs"); box.innerHTML="";
   (e.imgs||[]).forEach(im=>{
     const fig=document.createElement("figure");
-    fig.innerHTML=`<img src="${im.src}" alt="${im.cap}"><figcaption>${im.cap}</figcaption>`;
+    fig.innerHTML=`<img src="${im.src}" alt="${im.cap}" referrerpolicy="no-referrer"><figcaption>${im.cap}</figcaption>`;
     box.appendChild(fig);
   });
   document.querySelectorAll(".mark").forEach((m,idx)=>m.classList.toggle("active",idx===i));
