@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Las estudiantes también marcharon · Tlatelolco 1968</title>
 <meta name="description" content="Línea de tiempo: las estudiantes en el movimiento de 1968 y en Tlatelolco.">
 <style>
@@ -84,14 +84,9 @@ footer{text-align:center;margin-top:1.8rem;font-family:var(--font-m);font-size:1
     <div class="imgs" id="imgs"></div>
     <p class="note" id="note"></p>
   </article>
-  <footer>Fotos guardadas en la página para que carguen con datos móviles. · 2 de octubre no se olvida</footer>
+  <footer>Hecha para verse con datos móviles. · 2 de octubre no se olvida</footer>
 </div>
-<script src="./fotos.js"></script>
 <script src="./timeline.js"></script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(function(){});
-}
-</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){})}</script>
 </body>
 </html>
