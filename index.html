@@ -18,11 +18,15 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.65;min-height:100vh}
 button{font-family:inherit;cursor:pointer}
 .wrap{max-width:980px;margin:0 auto;padding:2.4rem 1.3rem 3rem}
-.banner{text-align:center;margin-bottom:1.6rem}
+.banner{text-align:center;margin-bottom:1.2rem}
 .banner .date{font-family:var(--font-m);letter-spacing:.22em;font-size:12px;color:var(--gold);text-transform:uppercase}
 h1{font-family:var(--font-d);font-size:2.55rem;line-height:1.05;margin:.4rem 0 .5rem;font-weight:800}
 h1 em{display:block;font-family:var(--font-b);font-style:italic;font-weight:400;font-size:.38em;color:var(--red);margin-top:.35em}
 .dek{color:var(--muted);max-width:64ch;margin:0 auto}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:1.2rem 0 0}
+.gallery figure{margin:0;background:#151210;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.gallery img{width:100%;height:150px;object-fit:cover;object-position:center top;display:block;filter:grayscale(.08) contrast(1.05)}
+.gallery figcaption{font-family:var(--font-m);font-size:10px;padding:6px 7px;color:var(--muted)}
 .legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:1.4rem 0 0}
 .chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:6px 12px;font-family:var(--font-m);font-size:11px}
 .chip.active{color:var(--paper);border-color:var(--gold)}
@@ -45,18 +49,16 @@ h1 em{display:block;font-family:var(--font-b);font-style:italic;font-weight:400;
 .kicker{font-family:var(--font-m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 .35rem}
 h2{font-family:var(--font-d);font-size:1.45rem;margin:0 0 .8rem;line-height:1.2}
 .body p{margin:0 0 .75rem;color:#E8DFCC}
-.body ul{margin:.2rem 0 1rem;padding-left:1.15rem;color:#E8DFCC}
 .facts{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0 0 1rem}
 .facts li{font-family:var(--font-m);font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:3px;color:var(--muted)}
 .imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
 figure{margin:0;background:#151210;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-figure img{width:100%;height:210px;object-fit:cover;display:block;background:#2a241e;filter:grayscale(.1) contrast(1.05)}
-figure figcaption{font-family:var(--font-m);font-size:10.5px;padding:7px 8px;color:var(--muted)}
+.imgs img{width:100%;height:210px;object-fit:cover;object-position:center top;display:block;background:#2a241e;filter:grayscale(.08) contrast(1.05)}
+.imgs figcaption{font-family:var(--font-m);font-size:10.5px;padding:7px 8px;color:var(--muted)}
 .note{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem;font-style:italic}
 .petition{background:#151210;border-left:3px solid var(--gold);padding:.8rem 1rem;margin:0 0 1rem;color:#E8DFCC;font-size:.95rem}
 footer{text-align:center;margin-top:1.8rem;font-family:var(--font-m);font-size:11px;color:var(--muted)}
-a{color:var(--gold)}
-@media(max-width:640px){h1{font-size:2rem}.wrap{padding:1.4rem 1rem 2.4rem}}
+@media(max-width:640px){h1{font-size:2rem}.wrap{padding:1.4rem 1rem 2.4rem}.gallery img{height:120px}}
 </style>
 </head>
 <body>
@@ -64,7 +66,8 @@ a{color:var(--gold)}
   <header class="banner">
     <p class="date">2 de octubre · no se olvida</p>
     <h1>Las estudiantes también marcharon<em>Tlatelolco 1968 · día por día · hora por hora</em></h1>
-    <p class="dek">Línea de tiempo del movimiento estudiantil de 1968, contada desde las estudiantes que brigadearon, hablaron y estuvieron en la plaza. Toca cada fecha.</p>
+    <p class="dek">Línea de tiempo contada desde las estudiantes. Arriba, ellas. Abajo, cada fecha.</p>
+    <div class="gallery" id="gallery"></div>
     <div class="legend">
       <button class="chip active" data-f="all">Todo</button>
       <button class="chip" data-f="inicio">Inicio (julio)</button>
@@ -84,10 +87,15 @@ a{color:var(--gold)}
     <div class="imgs" id="imgs"></div>
     <p class="note" id="note"></p>
   </article>
-  <footer>
-    Fotos: Wikimedia Commons (Marcel·lí Perelló, Héctor Gallardo, MAF-CDMX, Ibero). Página escolar. · 2 de octubre no se olvida
-  </footer>
+  <footer>Fotos de archivo de estudiantes del 68. Página escolar. · 2 de octubre no se olvida</footer>
 </div>
+<script src="./cinco.js"></script>
+<script src="./fila.js"></script>
+<script src="./marcha.js"></script>
+<script src="./cartel.js"></script>
+<script src="./coro.js"></script>
+<script src="./noche.js"></script>
+<script src="./madres.js"></script>
 <script src="./timeline.js"></script>
 </body>
 </html>
