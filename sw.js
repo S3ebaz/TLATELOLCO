@@ -1,5 +1,5 @@
-const CACHE = "estudiantes-68-v2";
-const FILES = ["./", "./index.html"];
+const CACHE = "estudiantes-68-v3";
+const FILES = ["./", "./index.html", "./timeline.js"];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(FILES)).then(() => self.skipWaiting()));
 });
