@@ -5,14 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Las estudiantes también marcharon · Tlatelolco 1968</title>
 <meta name="description" content="Línea de tiempo: las estudiantes en el movimiento de 1968 y en Tlatelolco.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#1A1614; --card:#2A241E; --paper:#F3EBD8; --ink:#F3EBD8; --muted:#C4B8A4;
   --line:rgba(243,235,216,.18); --red:#C45C4A; --gold:#D4B36A;
-  --font-d:'Bitter',Georgia,serif; --font-b:'Lora',Georgia,serif; --font-m:'Space Mono',monospace;
+  --font-d:Georgia,'Times New Roman',serif; --font-b:Georgia,serif; --font-m:ui-monospace,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.65;min-height:100vh}
@@ -20,7 +17,7 @@ button{font-family:inherit;cursor:pointer}
 .wrap{max-width:980px;margin:0 auto;padding:2.4rem 1.3rem 3rem}
 .banner{text-align:center;margin-bottom:1.2rem}
 .banner .date{font-family:var(--font-m);letter-spacing:.22em;font-size:12px;color:var(--gold);text-transform:uppercase}
-h1{font-family:var(--font-d);font-size:2.55rem;line-height:1.05;margin:.4rem 0 .5rem;font-weight:800}
+h1{font-family:var(--font-d);font-size:2.2rem;line-height:1.05;margin:.4rem 0 .5rem;font-weight:800}
 h1 em{display:block;font-family:var(--font-b);font-style:italic;font-weight:400;font-size:.38em;color:var(--red);margin-top:.35em}
 .dek{color:var(--muted);max-width:64ch;margin:0 auto}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:1.2rem 0 0}
@@ -30,7 +27,7 @@ h1 em{display:block;font-family:var(--font-b);font-style:italic;font-weight:400;
 .legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:1.4rem 0 0}
 .chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:6px 12px;font-family:var(--font-m);font-size:11px}
 .chip.active{color:var(--paper);border-color:var(--gold)}
-.track-wrap{overflow-x:auto;margin:1.6rem -1.3rem;padding:8px 1.3rem 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#151210}
+.track-wrap{overflow-x:auto;margin:1.6rem -1.3rem;padding:8px 1.3rem 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#151210;-webkit-overflow-scrolling:touch}
 .track{display:flex;gap:18px;min-width:max-content;position:relative;padding:28px 20px 10px}
 .track::before{content:'';position:absolute;left:0;right:0;top:52px;height:1px;background:var(--gold);opacity:.45}
 .mark{flex:0 0 auto;width:86px;background:none;border:none;color:var(--muted);display:flex;flex-direction:column;align-items:center;z-index:1;padding:0}
@@ -47,18 +44,18 @@ h1 em{display:block;font-family:var(--font-b);font-style:italic;font-weight:400;
 .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1.4rem 1.4rem 1.2rem;position:relative}
 .tab{position:absolute;top:-11px;right:16px;background:var(--red);color:#fff;font-family:var(--font-m);font-size:10px;letter-spacing:.08em;padding:4px 9px;border-radius:2px}
 .kicker{font-family:var(--font-m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 .35rem}
-h2{font-family:var(--font-d);font-size:1.45rem;margin:0 0 .8rem;line-height:1.2}
+h2{font-family:var(--font-d);font-size:1.35rem;margin:0 0 .8rem;line-height:1.2}
 .body p{margin:0 0 .75rem;color:#E8DFCC}
 .facts{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0 0 1rem}
 .facts li{font-family:var(--font-m);font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:3px;color:var(--muted)}
-.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
 figure{margin:0;background:#151210;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.imgs img{width:100%;height:210px;object-fit:cover;object-position:center top;display:block;background:#2a241e;filter:grayscale(.08) contrast(1.05)}
+.imgs img{width:100%;height:200px;object-fit:cover;object-position:center top;display:block;background:#2a241e}
 .imgs figcaption{font-family:var(--font-m);font-size:10.5px;padding:7px 8px;color:var(--muted)}
 .note{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem;font-style:italic}
 .petition{background:#151210;border-left:3px solid var(--gold);padding:.8rem 1rem;margin:0 0 1rem;color:#E8DFCC;font-size:.95rem}
 footer{text-align:center;margin-top:1.8rem;font-family:var(--font-m);font-size:11px;color:var(--muted)}
-@media(max-width:640px){h1{font-size:2rem}.wrap{padding:1.4rem 1rem 2.4rem}.gallery img{height:120px}}
+@media(max-width:640px){h1{font-size:1.85rem}.wrap{padding:1.2rem .9rem 2.2rem}.gallery img{height:118px}}
 </style>
 </head>
 <body>
@@ -87,8 +84,14 @@ footer{text-align:center;margin-top:1.8rem;font-family:var(--font-m);font-size:1
     <div class="imgs" id="imgs"></div>
     <p class="note" id="note"></p>
   </article>
-  <footer>Fotos de archivo de estudiantes del 68. Página escolar. · 2 de octubre no se olvida</footer>
+  <footer>Fotos guardadas en la página para que carguen con datos móviles. · 2 de octubre no se olvida</footer>
 </div>
+<script src="./fotos.js"></script>
 <script src="./timeline.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function(){});
+}
+</script>
 </body>
 </html>
