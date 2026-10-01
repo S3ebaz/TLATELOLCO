@@ -13,17 +13,17 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,serif;li
 .date{font-family:ui-monospace,Menlo,monospace;letter-spacing:.18em;font-size:12px;color:var(--gold);text-transform:uppercase;text-align:center}
 h1{font-size:2rem;line-height:1.05;text-align:center;margin:.35rem 0 .4rem}
 h1 em{display:block;font-style:italic;font-weight:400;font-size:.42em;color:var(--red);margin-top:.3em}
-.dek{color:var(--muted);text-align:center;max-width:62ch;margin:0 auto .9rem}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.dek{color:var(--muted);text-align:center;max-width:64ch;margin:0 auto .9rem}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .gallery figure,.card figure{margin:0;background:#151210;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.gallery img{width:100%;height:160px;object-fit:cover;object-position:center top;display:block}
-.gallery figcaption,.card figcaption{font-family:ui-monospace,Menlo,monospace;font-size:10px;padding:6px 7px;color:var(--muted)}
+.gallery img{width:100%;height:220px;object-fit:cover;object-position:center;display:block}
+.gallery figcaption{font-family:ui-monospace,Menlo,monospace;font-size:10px;padding:6px 7px;color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:1.1rem 0}
 .chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:6px 12px;font-family:ui-monospace,Menlo,monospace;font-size:11px;cursor:pointer}
 .chip.active{color:var(--ink);border-color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.card img{width:100%;height:180px;object-fit:cover;object-position:center top;display:block}
+.card img{width:100%;height:170px;object-fit:cover;object-position:center 30%;display:block}
 .pad{padding:.85rem .95rem 1rem}
 .who{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:0 0 .25rem}
 h2{font-size:1.2rem;margin:0 0 .35rem;line-height:1.2}
@@ -34,15 +34,24 @@ p{margin:0 0 .55rem;color:#E8DFCC;font-size:.98rem}
 .note{margin-top:1.1rem;color:var(--muted);font-size:.9rem;font-style:italic;text-align:center}
 footer{text-align:center;margin-top:1.2rem;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted)}
 .card.hide{display:none}
-@media(max-width:640px){h1{font-size:1.7rem}.gallery img{height:120px}}
+@media(max-width:640px){h1{font-size:1.7rem}.gallery{grid-template-columns:1fr}.gallery img{height:180px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="date">2 de octubre · no se olvida</p>
   <h1>Las estudiantes también marcharon<em>Solo ellas · movimiento de 1968</em></h1>
-  <p class="dek">Esta página nombra a las mujeres del movimiento. Las fotos son de estudiantes y compañeras en marchas y asambleas. No son retratos sueltos de cada nombre: esos están en archivos.</p>
-  <div class="gallery" id="gallery"></div>
+  <p class="dek">Aquí solo están las mujeres. Las fotos de arriba son de las marchas de 1968, donde ellas iban. Abajo, cada nombre.</p>
+  <div class="gallery">
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Manifestaci%C3%B3_de_dol.jpg/960px-Manifestaci%C3%B3_de_dol.jpg" alt="Marcha del silencio, 13 de septiembre de 1968">
+      <figcaption>Marcha del silencio, 13 de septiembre de 1968. Ellas iban en la fila.</figcaption>
+    </figure>
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manifestaci%C3%B3_27_d%27agost.jpg/960px-Manifestaci%C3%B3_27_d%27agost.jpg" alt="Marcha del 27 de agosto de 1968">
+      <figcaption>Marcha del 27 de agosto de 1968. Contingentes mixtos, con estudiantes.</figcaption>
+    </figure>
+  </div>
   <div class="chips">
     <button class="chip active" data-f="all">Todas</button>
     <button class="chip" data-f="cnh">Del CNH</button>
@@ -51,37 +60,53 @@ footer{text-align:center;margin-top:1.2rem;font-family:ui-monospace,Menlo,monosp
     <button class="chip" data-f="memoria">Memoria</button>
   </div>
   <div class="grid" id="grid"></div>
-  <p class="note">En el Consejo Nacional de Huelga había cientos de delegados y solo unas decenas de mujeres. En las brigadas eran muchas más.</p>
+  <p class="note">No hay un retrato libre de cada una. Los de La Tita, La Nacha y Myrthokleia están en archivos y en libros. Las fotos de las tarjetas son de las marchas en las que participaron.</p>
   <footer>Las estudiantes también marcharon · 2 de octubre no se olvida</footer>
 </div>
-<script src="./fa.js"></script>
-<script src="./fb.js"></script>
-<script src="./fc.js"></script>
 <script>
-const CAP={cinco:"Cinco estudiantes, retrato de época",fila:"Compañeras caminando",marcha:"Ellas en la marcha",cartel:"Con un cartel",coro:"En el coro de la marcha",noche:"Salida nocturna"};
+const FOTO={
+  dol:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Manifestaci%C3%B3_de_dol.jpg/960px-Manifestaci%C3%B3_de_dol.jpg",
+  ago:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manifestaci%C3%B3_27_d%27agost.jpg/960px-Manifestaci%C3%B3_27_d%27agost.jpg",
+  poni:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Elena_Poniatowska_%282015%29.jpg/480px-Elena_Poniatowska_%282015%29.jpg"
+};
 const WOMEN=[
-{f:"cnh",foto:"cinco",nombre:"Roberta Avendaño",aka:"La Tita",escuela:"Derecho, UNAM",texto:"Delegada de su facultad ante el Consejo Nacional de Huelga. Encabezó asambleas. Estuvo en la Plaza de las Tres Culturas y después en Santa Martha Acatitla.",tags:["CNH","Derecho"]},
-{f:"cnh",foto:"cinco",nombre:"Ana Ignacia Rodríguez",aka:"La Nacha",escuela:"Derecho, UNAM",texto:"Brigadista y delegada. Llevaba las finanzas de su comité. Estuvo en Tlatelolco con La Tita y después en Santa Martha.",tags:["CNH","Brigada"]},
-{f:"plaza",foto:"coro",nombre:"Myrthokleia González Gallardo",aka:"",escuela:"Wilfrido Massieu, IPN",texto:"Una de las mujeres del CNH. El 2 de octubre condujo el mitin desde el edificio Chihuahua. Anunció que la marcha no saldría, para evitar un choque.",tags:["CNH","Mitin"]},
-{f:"cnh",foto:"cartel",nombre:"Marcia Gutiérrez Cárdenas",aka:"",escuela:"Odontología, UNAM",texto:"Delegada del CNH. Ese mediodía su nombre estuvo junto al de Myrthokleia para conducir el mitin.",tags:["CNH","UNAM"]},
-{f:"plaza",foto:"marcha",nombre:"Adriana Corona",aka:"",escuela:"Delegada del CNH",texto:"Representó a su escuela en el Consejo. Contó que, aun con avisos de riesgo, muchas salieron esa tarde.",tags:["CNH","2 de octubre"]},
-{f:"cnh",foto:"cinco",nombre:"María Eugenia Espinosa",aka:"",escuela:"Delegada",texto:"Participó en asambleas y en la difusión de las demandas. Su nombre aparece entre las mujeres con voz en las decisiones.",tags:["CNH","Asambleas"]},
-{f:"brigada",foto:"cartel",nombre:"Martha Servín",aka:"",escuela:"Delegada",texto:"Estuvo entre las representantes estudiantiles. El trabajo diario era de volantes, mantas y brigadas.",tags:["CNH","Brigada"]},
-{f:"plaza",foto:"fila",nombre:"Amada Velasco",aka:"",escuela:"Derecho",texto:"Estuvo en el movimiento y fue de las mujeres que quedaron presas en Santa Martha Acatitla.",tags:["Santa Martha"]},
-{f:"plaza",foto:"fila",nombre:"Adela Salazar de Castillejos",aka:"",escuela:"Comité de apoyo",texto:"Abogada del comité de familiares que acompañó a las y los estudiantes. También estuvo en Santa Martha.",tags:["Familias"]},
-{f:"brigada",foto:"marcha",nombre:"Elsa Lecuona",aka:"",escuela:"Brigadista",texto:"Salía a la calle a explicar el pliego. Dijo que ellas también se la jugaron.",tags:["Brigada"]},
-{f:"brigada",foto:"noche",nombre:"Silvia Gálvez",aka:"",escuela:"Brigadista",texto:"A los 15 años ya repartía volantes. Participó en la Marcha del Silencio del 13 de septiembre.",tags:["Brigada","Silencio"]},
-{f:"memoria",foto:"coro",nombre:"Justina Lory Méndez Martínez",aka:"",escuela:"Medicina, UNAM",texto:"Estudiante y fotógrafa. Guardó imágenes de las mujeres en marchas y asambleas. Su colección está en el Archivo Histórico de la UNAM.",tags:["Fotos","AHUNAM"]},
-{f:"memoria",foto:"cartel",nombre:"Ana Ortiz de Ruiz y Esther Montero",aka:"",escuela:"Universitarias",texto:"Reunieron volantes, manifiestos y fotografías. Gracias a ellas hay documentos del movimiento.",tags:["Archivo"]},
-{f:"memoria",foto:"cinco",nombre:"Ethel Villanueva",aka:"",escuela:"Universitaria",texto:"Registró con su cámara el mural efímero que pintaron las y los estudiantes en Ciudad Universitaria.",tags:["Fotos","CU"]},
-{f:"memoria",foto:"coro",nombre:"Elena Poniatowska",aka:"",escuela:"Periodista",texto:"Recogió voces, muchas de mujeres, y las publicó en La noche de Tlatelolco. Sin ese libro, varias historias no se habrían oído.",tags:["Testimonio"]},
-{f:"brigada",foto:"fila",nombre:"Ifigenia Martínez",aka:"",escuela:"Profesora",texto:"Maestra que se sumó al movimiento y acompañó a las y los estudiantes.",tags:["Profesoras"]}
+{f:"cnh",foto:"dol",nombre:"Roberta Avendaño",aka:"La Tita",escuela:"Derecho, UNAM",texto:"Delegada de su facultad ante el Consejo Nacional de Huelga. Encabezó asambleas. Estuvo en la Plaza de las Tres Culturas y después en Santa Martha Acatitla.",tags:["CNH","Derecho"]},
+{f:"cnh",foto:"ago",nombre:"Ana Ignacia Rodríguez",aka:"La Nacha",escuela:"Derecho, UNAM",texto:"Brigadista y delegada. Llevaba las finanzas de su comité. Estuvo en Tlatelolco con La Tita y después en Santa Martha.",tags:["CNH","Brigada"]},
+{f:"plaza",foto:"dol",nombre:"Myrthokleia González Gallardo",aka:"",escuela:"Wilfrido Massieu, IPN",texto:"Una de las mujeres del CNH. El 2 de octubre condujo el mitin desde el edificio Chihuahua y anunció que la marcha no saldría.",tags:["CNH","Mitin"]},
+{f:"cnh",foto:"ago",nombre:"Marcia Gutiérrez Cárdenas",aka:"",escuela:"Odontología, UNAM",texto:"Delegada del CNH. Ese mediodía su nombre estuvo junto al de Myrthokleia para conducir el mitin.",tags:["CNH","UNAM"]},
+{f:"plaza",foto:"dol",nombre:"Adriana Corona",aka:"",escuela:"Prepa 6",texto:"Delegada del CNH. Contó que, aun con avisos de riesgo, muchas salieron esa tarde.",tags:["CNH","2 de octubre"]},
+{f:"cnh",foto:"ago",nombre:"María Eugenia Espinosa",aka:"",escuela:"Delegada",texto:"Participó en asambleas y en la difusión de las demandas. Su nombre aparece entre las mujeres con voz en las decisiones.",tags:["CNH","Asambleas"]},
+{f:"brigada",foto:"dol",nombre:"Martha Servín",aka:"",escuela:"Delegada",texto:"Estuvo entre las representantes estudiantiles. El trabajo diario era de volantes, mantas y brigadas.",tags:["CNH","Brigada"]},
+{f:"plaza",foto:"ago",nombre:"Amada Velasco",aka:"",escuela:"Derecho",texto:"Estuvo en el movimiento y fue de las mujeres que quedaron en Santa Martha Acatitla.",tags:["Santa Martha"]},
+{f:"plaza",foto:"dol",nombre:"Adela Salazar de Castillejos",aka:"",escuela:"Comité de apoyo",texto:"Abogada del comité de familiares que acompañó a las y los estudiantes. También estuvo en Santa Martha.",tags:["Familias"]},
+{f:"brigada",foto:"ago",nombre:"Elsa Lecuona",aka:"",escuela:"Brigadista",texto:"Salía a la calle a explicar el pliego. Dijo que ellas también se la jugaron.",tags:["Brigada"]},
+{f:"brigada",foto:"dol",nombre:"Silvia Gálvez",aka:"",escuela:"Brigadista",texto:"A los 15 años ya repartía volantes. Participó en la Marcha del Silencio del 13 de septiembre.",tags:["Brigada","Silencio"]},
+{f:"memoria",foto:"ago",nombre:"Justina Lory Méndez Martínez",aka:"",escuela:"Medicina, UNAM",texto:"Estudiante y fotógrafa. Guardó imágenes de las mujeres en marchas y asambleas. Su colección está en el Archivo Histórico de la UNAM.",tags:["Fotos","AHUNAM"]},
+{f:"memoria",foto:"dol",nombre:"Ana Ortiz de Ruiz y Esther Montero",aka:"",escuela:"Universitarias",texto:"Reunieron volantes, manifiestos y fotografías. Gracias a ellas hay documentos del movimiento.",tags:["Archivo"]},
+{f:"memoria",foto:"ago",nombre:"Ethel Villanueva",aka:"",escuela:"Universitaria",texto:"Registró con su cámara el mural efímero que pintaron en la explanada de Ciudad Universitaria.",tags:["Fotos","CU"]},
+{f:"memoria",foto:"poni",nombre:"Elena Poniatowska",aka:"",escuela:"Periodista · foto de años después",texto:"Recogió voces, muchas de mujeres, y las publicó en La noche de Tlatelolco. Sin ese libro, varias historias no se habrían oído.",tags:["Testimonio"]},
+{f:"brigada",foto:"dol",nombre:"Ifigenia Martínez",aka:"",escuela:"Profesora",texto:"Maestra que se sumó al movimiento y acompañó a las y los estudiantes.",tags:["Profesoras"]}
 ];
-function add(box,src,cap){if(!src)return;const fig=document.createElement("figure");const img=document.createElement("img");img.src=src;img.alt=cap;img.loading="lazy";img.onerror=function(){fig.style.display="none"};const c=document.createElement("figcaption");c.textContent=cap;fig.appendChild(img);fig.appendChild(c);box.appendChild(fig)}
-const g=document.getElementById("gallery");Object.keys(CAP).forEach(k=>add(g,(window.F||{})[k],CAP[k]));
 const grid=document.getElementById("grid");
-WOMEN.forEach(w=>{const art=document.createElement("article");art.className="card";art.dataset.f=w.f;const src=(window.F||{})[w.foto];if(src){const img=document.createElement("img");img.src=src;img.alt="Compañeras del movimiento de 1968";art.appendChild(img)}const pad=document.createElement("div");pad.className="pad";pad.innerHTML='<p class="who">'+w.escuela+'</p><h2>'+w.nombre+(w.aka?' <span class="aka">'+w.aka+'</span>':'')+'</h2><p>'+w.texto+'</p>';const ul=document.createElement("ul");ul.className="tags";w.tags.forEach(t=>{const li=document.createElement("li");li.textContent=t;ul.appendChild(li)});pad.appendChild(ul);art.appendChild(pad);grid.appendChild(art)});
-document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));ch.classList.add("active");const f=ch.dataset.f;document.querySelectorAll(".card").forEach(c=>c.classList.toggle("hide",!(f==="all"||c.dataset.f===f)))});
+WOMEN.forEach(w=>{
+  const art=document.createElement("article");
+  art.className="card"; art.dataset.f=w.f;
+  const img=document.createElement("img");
+  img.src=FOTO[w.foto]; img.alt=w.nombre; img.loading="lazy";
+  img.onerror=function(){this.style.display="none"};
+  art.appendChild(img);
+  const pad=document.createElement("div"); pad.className="pad";
+  pad.innerHTML='<p class="who">'+w.escuela+'</p><h2>'+w.nombre+(w.aka?' <span class="aka">'+w.aka+'</span>':'')+'</h2><p>'+w.texto+'</p>';
+  const ul=document.createElement("ul"); ul.className="tags";
+  w.tags.forEach(t=>{const li=document.createElement("li"); li.textContent=t; ul.appendChild(li)});
+  pad.appendChild(ul); art.appendChild(pad); grid.appendChild(art);
+});
+document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+  ch.classList.add("active");
+  const f=ch.dataset.f;
+  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("hide",!(f==="all"||c.dataset.f===f)));
+});
 </script>
 </body>
 </html>
